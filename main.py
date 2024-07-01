@@ -20,8 +20,13 @@ while cap.isOpened():
     # finding the Shapes:
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     
-    # Draw on frame:
-    cv2.drawContours(frame, contours, -1, (0,0,255), 3)
+    for contour in contours:
+    
+        # finding the edge of Rectange:
+        x,y,w,h = cv2.boundingRect(contour)
+        
+        # Draw The rectangel on frame:
+        cv2.rectangle(frame, (x,y), (x+w, y+h), (0,0,255), 2)
     
     # Shows the Video:
     cv2.imshow("Founded", frame)
